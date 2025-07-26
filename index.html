@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VK Lucky Bistro - Fine Dining Experience</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>VK Lucky Bistro Cafe</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to VK LUCKY BISTRO CAFE</h1>
+            <p>Experience culinary excellence in every bite</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#contact" class="btn btn-secondary">Book Table</a>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About VK LUCKY BISTRO</h2>
+                <p>Where tradition meets innovation</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>VK Lucky Bistro has been serving exceptional cuisine since its inception. We believe in creating memorable dining experiences through our carefully crafted dishes, warm hospitality, and elegant ambiance.</p>
+                    <p>Our chefs combine traditional cooking techniques with modern culinary innovations to bring you flavors that celebrate both heritage and creativity.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <h4>Fresh Ingredients</h4>
+                            <p>Locally sourced, premium quality ingredients</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <h4>Made with Love</h4>
+                            <p>Every dish prepared with passion and care</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <h4>Award Winning</h4>
+                            <p>Recognized for culinary excellence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/500x400/667eea/ffffff?text=Restaurant+Interior" alt="Restaurant Interior" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Menu</h2>
+                <p>Discover our signature dishes</p>
+            </div>
+            
+            <div class="menu-categories">
+                <button class="menu-btn active" data-category="all">All</button>
+                <button class="menu-btn" data-category="appetizers">Appetizers</button>
+                <button class="menu-btn" data-category="mains">Main Course</button>
+                <button class="menu-btn" data-category="desserts">Desserts</button>
+                <button class="menu-btn" data-category="beverages">Beverages</button>
+            </div>
+
+            <div class="menu-items">
+                <!-- Appetizers -->
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/fbbd08/ffffff?text=Calamari" alt="Crispy Calamari">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Crispy Calamari</h3>
+                        <p>Fresh squid rings with spicy marinara sauce</p>
+                        <span class="price">₹280</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/fbbd08/ffffff?text=Bruschetta" alt="Bruschetta">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Bruschetta Trio</h3>
+                        <p>Three varieties of our signature bruschetta</p>
+                        <span class="price">₹320</span>
+                    </div>
+                </div>
+
+                <!-- Main Course -->
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=Salmon" alt="Grilled Salmon">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Grilled Salmon</h3>
+                        <p>Atlantic salmon with lemon butter sauce and vegetables</p>
+                        <span class="price">₹850</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=Biryani" alt="VK Special Biryani">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>VK Special Biryani</h3>
+                        <p>Aromatic basmati rice with tender meat and exotic spices</p>
+                        <span class="price">₹450</span>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/764ba2/ffffff?text=Fondant" alt="Chocolate Fondant">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Chocolate Fondant</h3>
+                        <p>Warm chocolate cake with molten center and vanilla ice cream</p>
+                        <span class="price">₹280</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/764ba2/ffffff?text=Tiramisu" alt="Tiramisu">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Classic Tiramisu</h3>
+                        <p>Traditional Italian dessert with coffee and mascarpone</p>
+                        <span class="price">₹250</span>
+                    </div>
+                </div>
+
+                <!-- Beverages -->
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/28a745/ffffff?text=Juice" alt="Fresh Juice">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Fresh Fruit Juices</h3>
+                        <p>Seasonal fresh fruit juices</p>
+                        <span class="price">₹120</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/120x120/28a745/ffffff?text=Coffee" alt="Specialty Coffee">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Specialty Coffee</h3>
+                        <p>Artisan coffee blends and espresso drinks</p>
+                        <span class="price">₹150</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Gallery</h2>
+                <p>Moments from VK Lucky Bistro</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Fine+Dining" alt="Gallery Image 1">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/fbbd08/ffffff?text=Delicious+Food" alt="Gallery Image 2">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/764ba2/ffffff?text=Elegant+Ambiance" alt="Gallery Image 3">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/28a745/ffffff?text=Fresh+Ingredients" alt="Gallery Image 4">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/dc3545/ffffff?text=Special+Events" alt="Gallery Image 5">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/17a2b8/ffffff?text=Happy+Customers" alt="Gallery Image 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>6-20, Midhani Quarters, Dhatu Nagar, Kanchan Bagh, Balapur<br>Hyderabad, Telangana 500097</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91 9000202102</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@vkluckybistro.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>Mon-Sun: 11:00 AM - 11:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VK LUCKY BISTRO</h3>
+                    <p>Creating memorable dining experiences since day one.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@vkluckybistro.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Downtown</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VK Lucky Bistro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
