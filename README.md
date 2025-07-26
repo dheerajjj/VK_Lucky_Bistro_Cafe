@@ -1,5 +1,3 @@
-# VK_Lucky_Bistro_Cafe
-
 # VK Lucky Bistro - Restaurant Website
 
 A modern, responsive restaurant website built with HTML, CSS, and JavaScript.

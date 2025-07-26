@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VK Lucky Bistro - Fine Dining Experience</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -13,16 +13,22 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <div class="nav-brand">
-                    <h1>VK Lucky Bistro Cafe</h1>
+                <div class="nav-left">
+                    <ul class="nav-menu-left">
+                        <li><a href="#about">ABOUT</a></li>
+                        <li><a href="#menu">MENUS</a></li>
+                        <li><a href="#gallery">GALLERY</a></li>
+                    </ul>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+                <div class="nav-brand">
+                    <h1>VK Lucky Bistro</h1>
+                </div>
+                <div class="nav-right">
+                    <ul class="nav-menu-right">
+                        <li><a href="#contact">CONTACT US</a></li>
+                        <li><a href="#contact" class="btn-reserve">RESERVATIONS</a></li>
+                    </ul>
+                </div>
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -34,15 +40,28 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Welcome to VK LUCKY BISTRO CAFE</h1>
-            <p>Experience culinary excellence in every bite</p>
-            <div class="hero-buttons">
-                <a href="#menu" class="btn btn-primary">View Menu</a>
-                <a href="#contact" class="btn btn-secondary">Book Table</a>
+            <div class="hero-text">
+                <p class="welcome-text">Welcome to VK Lucky Bistro</p>
+                <h1 class="hero-title">Experience Authentic and Delicious Indian Cuisine</h1>
+                <p class="hero-subtitle">VK Lucky Bistro is a premium Indian restaurant located in Hyderabad. We serve the most authentic recipes with traditional spices and modern presentation.</p>
+                <div class="hero-cta">
+                    <a href="#menu" class="btn-primary-hero">OUR MENU</a>
+                    <a href="#about" class="btn-secondary-hero">ABOUT US</a>
+                </div>
             </div>
         </div>
-        <div class="hero-overlay"></div>
+        <div class="hero-slider-nav">
+            <button class="slider-arrow slider-prev">‹</button>
+            <div class="slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="slider-arrow slider-next">›</button>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -102,92 +121,180 @@
                 <!-- Appetizers -->
                 <div class="menu-item" data-category="appetizers">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/fbbd08/ffffff?text=Calamari" alt="Crispy Calamari">
+                        <img src="https://via.placeholder.com/150x150/8B4513/ffffff?text=Samosa" alt="Vegetable Samosa">
                     </div>
                     <div class="menu-item-content">
-                        <h3>Crispy Calamari</h3>
-                        <p>Fresh squid rings with spicy marinara sauce</p>
-                        <span class="price">₹280</span>
+                        <h3>Vegetable Samosa</h3>
+                        <p>Crispy golden pastries filled with spiced potatoes and peas</p>
+                        <span class="price">₹80</span>
                     </div>
                 </div>
 
                 <div class="menu-item" data-category="appetizers">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/fbbd08/ffffff?text=Bruschetta" alt="Bruschetta">
+                        <img src="https://via.placeholder.com/150x150/8B4513/ffffff?text=Kebab" alt="Chicken 65">
                     </div>
                     <div class="menu-item-content">
-                        <h3>Bruschetta Trio</h3>
-                        <p>Three varieties of our signature bruschetta</p>
-                        <span class="price">₹320</span>
+                        <h3>Chicken 65</h3>
+                        <p>Spicy deep-fried chicken marinated in traditional South Indian spices</p>
+                        <span class="price">₹220</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/8B4513/ffffff?text=Paneer" alt="Paneer Tikka">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Paneer Tikka</h3>
+                        <p>Grilled cottage cheese cubes marinated in yogurt and spices</p>
+                        <span class="price">₹180</span>
                     </div>
                 </div>
 
                 <!-- Main Course -->
                 <div class="menu-item" data-category="mains">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=Salmon" alt="Grilled Salmon">
+                        <img src="https://via.placeholder.com/150x150/DAA520/ffffff?text=Biryani" alt="Hyderabadi Biryani">
                     </div>
                     <div class="menu-item-content">
-                        <h3>Grilled Salmon</h3>
-                        <p>Atlantic salmon with lemon butter sauce and vegetables</p>
-                        <span class="price">₹850</span>
+                        <h3>Hyderabadi Chicken Biryani</h3>
+                        <p>Authentic aromatic basmati rice with tender chicken and traditional dum cooking</p>
+                        <span class="price">₹320</span>
                     </div>
                 </div>
 
                 <div class="menu-item" data-category="mains">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=Biryani" alt="VK Special Biryani">
+                        <img src="https://via.placeholder.com/150x150/DAA520/ffffff?text=Mutton" alt="Mutton Biryani">
                     </div>
                     <div class="menu-item-content">
-                        <h3>VK Special Biryani</h3>
-                        <p>Aromatic basmati rice with tender meat and exotic spices</p>
-                        <span class="price">₹450</span>
+                        <h3>Mutton Biryani</h3>
+                        <p>Premium mutton pieces cooked with fragrant basmati rice and special spices</p>
+                        <span class="price">₹420</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/DAA520/ffffff?text=Veg+Biryani" alt="Vegetable Biryani">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Vegetable Biryani</h3>
+                        <p>Aromatic basmati rice with mixed vegetables and exotic spices</p>
+                        <span class="price">₹280</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/A0522D/ffffff?text=Curry" alt="Butter Chicken">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Butter Chicken</h3>
+                        <p>Creamy tomato-based curry with tender chicken pieces</p>
+                        <span class="price">₹260</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/A0522D/ffffff?text=Dal" alt="Dal Tadka">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Dal Tadka</h3>
+                        <p>Yellow lentils tempered with cumin, garlic, and aromatic spices</p>
+                        <span class="price">₹150</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/A0522D/ffffff?text=Naan" alt="Garlic Naan">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Garlic Naan</h3>
+                        <p>Soft bread topped with fresh garlic and herbs, baked in tandoor</p>
+                        <span class="price">₹80</span>
                     </div>
                 </div>
 
                 <!-- Desserts -->
                 <div class="menu-item" data-category="desserts">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/764ba2/ffffff?text=Fondant" alt="Chocolate Fondant">
+                        <img src="https://via.placeholder.com/150x150/B22222/ffffff?text=Gulab+Jamun" alt="Gulab Jamun">
                     </div>
                     <div class="menu-item-content">
-                        <h3>Chocolate Fondant</h3>
-                        <p>Warm chocolate cake with molten center and vanilla ice cream</p>
-                        <span class="price">₹280</span>
+                        <h3>Gulab Jamun</h3>
+                        <p>Soft milk dumplings soaked in rose-flavored sugar syrup</p>
+                        <span class="price">₹120</span>
                     </div>
                 </div>
 
                 <div class="menu-item" data-category="desserts">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/764ba2/ffffff?text=Tiramisu" alt="Tiramisu">
+                        <img src="https://via.placeholder.com/150x150/B22222/ffffff?text=Kulfi" alt="Kulfi">
                     </div>
                     <div class="menu-item-content">
-                        <h3>Classic Tiramisu</h3>
-                        <p>Traditional Italian dessert with coffee and mascarpone</p>
-                        <span class="price">₹250</span>
+                        <h3>Kulfi</h3>
+                        <p>Traditional Indian ice cream flavored with cardamom and pistachios</p>
+                        <span class="price">₹100</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/B22222/ffffff?text=Rasmalai" alt="Rasmalai">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Rasmalai</h3>
+                        <p>Soft cottage cheese dumplings in sweetened milk with saffron</p>
+                        <span class="price">₹140</span>
                     </div>
                 </div>
 
                 <!-- Beverages -->
                 <div class="menu-item" data-category="beverages">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/28a745/ffffff?text=Juice" alt="Fresh Juice">
+                        <img src="https://via.placeholder.com/150x150/556B2F/ffffff?text=Lassi" alt="Mango Lassi">
                     </div>
                     <div class="menu-item-content">
-                        <h3>Fresh Fruit Juices</h3>
-                        <p>Seasonal fresh fruit juices</p>
-                        <span class="price">₹120</span>
+                        <h3>Mango Lassi</h3>
+                        <p>Creamy yogurt drink blended with fresh mango pulp</p>
+                        <span class="price">₹90</span>
                     </div>
                 </div>
 
                 <div class="menu-item" data-category="beverages">
                     <div class="menu-item-image">
-                        <img src="https://via.placeholder.com/120x120/28a745/ffffff?text=Coffee" alt="Specialty Coffee">
+                        <img src="https://via.placeholder.com/150x150/556B2F/ffffff?text=Chai" alt="Masala Chai">
                     </div>
                     <div class="menu-item-content">
-                        <h3>Specialty Coffee</h3>
-                        <p>Artisan coffee blends and espresso drinks</p>
-                        <span class="price">₹150</span>
+                        <h3>Masala Chai</h3>
+                        <p>Traditional Indian tea brewed with aromatic spices and milk</p>
+                        <span class="price">₹40</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/556B2F/ffffff?text=Buttermilk" alt="Buttermilk">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Chaas (Buttermilk)</h3>
+                        <p>Refreshing yogurt-based drink with mint and cumin</p>
+                        <span class="price">₹60</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">
+                        <img src="https://via.placeholder.com/150x150/556B2F/ffffff?text=Juice" alt="Fresh Lime Water">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Fresh Lime Water</h3>
+                        <p>Refreshing lime juice with mint and black salt</p>
+                        <span class="price">₹50</span>
                     </div>
                 </div>
             </div>
@@ -326,9 +433,9 @@
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
-                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-phone"></i> +91 9000202102</p>
                     <p><i class="fas fa-envelope"></i> info@vkluckybistro.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Downtown</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 6-20, Midhani Quarters, Dhatu Nagar, Kanchan Bagh, Balapur, Hyderabad, Telangana 500097</p>
                 </div>
             </div>
             <div class="footer-bottom">
