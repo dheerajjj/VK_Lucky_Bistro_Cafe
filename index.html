@@ -679,7 +679,7 @@
     <!-- Inline Chatbot JavaScript -->
     <script>
         const API_KEY = 'cb_c78c139b58e9f364892b24c6a82e7f52540e52162dca171a768353044bfab62d';
-        const API_URL = 'https://mouna-ai-chatbot-production.up.railway.app/api/chat';
+        const API_URL = 'https://mouna-ai-chatbot-production.up.railway.app/ask';
         
         // Restaurant information for local responses
         const restaurantInfo = {
@@ -832,11 +832,14 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`
+                        'X-API-Key': API_KEY
                     },
                     body: JSON.stringify({
                         message: message,
-                        context: 'VK Lucky Bistro - Indian Restaurant in Hyderabad'
+                        sessionId: 'session_' + Date.now(),
+                        language: 'en',
+                        userAgent: navigator.userAgent,
+                        referrer: document.referrer
                     })
                 });
                 
