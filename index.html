@@ -681,6 +681,21 @@
         const API_KEY = 'cb_c78c139b58e9f364892b24c6a82e7f52540e52162dca171a768353044bfab62d';
         const API_URL = 'https://mouna-ai-chatbot-production.up.railway.app/api/chat';
         
+        // Restaurant information for local responses
+        const restaurantInfo = {
+            hours: 'Mon-Sun: 11:00 AM - 11:00 PM',
+            phone: '+91 9000202102',
+            email: 'info@vkluckybistro.com',
+            address: '6-20, Midhani Quarters, Dhatu Nagar, Kanchan Bagh, Balapur, Hyderabad, Telangana 500097',
+            specialties: ['Hyderabadi Biryani', 'Butter Chicken', 'Paneer Tikka', 'Dal Tadka'],
+            popular: {
+                'appetizers': [{ name: 'Vegetable Samosa', price: '₹80' }, { name: 'Chicken 65', price: '₹220' }, { name: 'Paneer Tikka', price: '₹180' }],
+                'mains': [{ name: 'Hyderabadi Chicken Biryani', price: '₹320' }, { name: 'Mutton Biryani', price: '₹420' }, { name: 'Butter Chicken', price: '₹260' }],
+                'desserts': [{ name: 'Gulab Jamun', price: '₹120' }, { name: 'Kulfi', price: '₹100' }, { name: 'Rasmalai', price: '₹140' }],
+                'beverages': [{ name: 'Mango Lassi', price: '₹90' }, { name: 'Masala Chai', price: '₹40' }, { name: 'Fresh Lime Water', price: '₹50' }]
+            }
+        };
+        
         function toggleChatbot() {
             const popup = document.getElementById('chatbotPopup');
             popup.classList.toggle('active');
@@ -713,6 +728,81 @@
             document.getElementById('typingIndicator').classList.remove('active');
         }
         
+        function getLocalResponse(message) {
+            const msg = message.toLowerCase();
+            
+            // Hours/timing questions
+            if (msg.includes('hour') || msg.includes('time') || msg.includes('open') || msg.includes('close')) {
+                return `🕐 We're open ${restaurantInfo.hours}. We serve delicious Indian cuisine all week long!`;
+            }
+            
+            // Location/address questions
+            if (msg.includes('address') || msg.includes('location') || msg.includes('where') || msg.includes('direction')) {
+                return `📍 You can find us at: ${restaurantInfo.address}. We're located in the heart of Hyderabad!`;
+            }
+            
+            // Phone/contact questions
+            if (msg.includes('phone') || msg.includes('call') || msg.includes('contact') || msg.includes('number')) {
+                return `📞 You can call us at ${restaurantInfo.phone} or email us at ${restaurantInfo.email}. We'd love to hear from you!`;
+            }
+            
+            // Menu questions
+            if (msg.includes('menu') || msg.includes('food') || msg.includes('dish') || msg.includes('eat')) {
+                return `🍽️ Our menu features authentic Indian cuisine! Popular items include:\n\n🥘 Hyderabadi Biryani (₹320-₹420)\n🍛 Butter Chicken (₹260)\n🥗 Paneer Tikka (₹180)\n🍚 Dal Tadka (₹150)\n\nWould you like to know about any specific category?`;
+            }
+            
+            // Appetizers
+            if (msg.includes('appetizer') || msg.includes('starter') || msg.includes('snack')) {
+                const appetizers = restaurantInfo.popular.appetizers.map(item => `• ${item.name} - ${item.price}`).join('\n');
+                return `🥟 Our delicious appetizers:\n\n${appetizers}\n\nAll made fresh with authentic spices!`;
+            }
+            
+            // Main courses
+            if (msg.includes('main') || msg.includes('biryani') || msg.includes('curry') || msg.includes('chicken')) {
+                const mains = restaurantInfo.popular.mains.map(item => `• ${item.name} - ${item.price}`).join('\n');
+                return `🍛 Our signature main courses:\n\n${mains}\n\nServed with basmati rice and fresh naan!`;
+            }
+            
+            // Desserts
+            if (msg.includes('dessert') || msg.includes('sweet') || msg.includes('gulab') || msg.includes('kulfi')) {
+                const desserts = restaurantInfo.popular.desserts.map(item => `• ${item.name} - ${item.price}`).join('\n');
+                return `🍨 Our traditional desserts:\n\n${desserts}\n\nPerfect way to end your meal!`;
+            }
+            
+            // Beverages
+            if (msg.includes('drink') || msg.includes('beverage') || msg.includes('lassi') || msg.includes('chai')) {
+                const beverages = restaurantInfo.popular.beverages.map(item => `• ${item.name} - ${item.price}`).join('\n');
+                return `🥤 Our refreshing beverages:\n\n${beverages}\n\nPerfect complement to our spicy dishes!`;
+            }
+            
+            // Reservation questions
+            if (msg.includes('reservation') || msg.includes('book') || msg.includes('table') || msg.includes('reserve')) {
+                return `📅 For reservations, please call us at ${restaurantInfo.phone}. We recommend booking in advance, especially for dinner and weekends!`;
+            }
+            
+            // Delivery questions
+            if (msg.includes('delivery') || msg.includes('takeaway') || msg.includes('pickup') || msg.includes('order')) {
+                return `🚚 For delivery and takeaway orders, please call us at ${restaurantInfo.phone}. We're also available on popular food delivery apps!`;
+            }
+            
+            // Price questions
+            if (msg.includes('price') || msg.includes('cost') || msg.includes('expensive') || msg.includes('cheap')) {
+                return `💰 Our prices are very reasonable! Appetizers: ₹80-₹220, Main courses: ₹150-₹420, Desserts: ₹100-₹140. Great value for authentic Indian cuisine!`;
+            }
+            
+            // General greetings
+            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey') || msg.includes('good')) {
+                return `🙏 Namaste! Welcome to VK Lucky Bistro! How can I help you today? I can tell you about our menu, hours, location, or answer any questions about our restaurant!`;
+            }
+            
+            // Thank you
+            if (msg.includes('thank') || msg.includes('thanks')) {
+                return `🙏 You're most welcome! We look forward to serving you at VK Lucky Bistro. Have a wonderful day!`;
+            }
+            
+            return null; // No local match found
+        }
+        
         async function sendMessage() {
             const input = document.getElementById('chatbotInput');
             const message = input.value.trim();
@@ -726,6 +816,17 @@
             // Show typing indicator
             showTypingIndicator();
             
+            // First try local response
+            const localResponse = getLocalResponse(message);
+            if (localResponse) {
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addMessage(localResponse);
+                }, 800); // Simulate thinking time
+                return;
+            }
+            
+            // If no local response, try API
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
@@ -752,7 +853,9 @@
             } catch (error) {
                 console.error('Chat API error:', error);
                 hideTypingIndicator();
-                addMessage('I apologize, but I\'m having trouble connecting right now. Please try again in a moment, or feel free to call us at +91 9000202102 for immediate assistance!');
+                
+                // Provide helpful fallback response
+                addMessage(`I'd be happy to help! I can tell you about:\n\n🍽️ Our menu and dishes\n🕐 Restaurant hours\n📍 Location and directions\n📞 Contact information\n📅 Reservations\n\nJust ask me anything, or call us at ${restaurantInfo.phone}!`);
             }
         }
         
