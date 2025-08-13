@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 FRESH VK Lucky Bistro Chatbot Test - 2025-08-13 22:51:43</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(255,255,255,0.1); 
+            padding: 30px; 
+            border-radius: 20px; 
+            backdrop-filter: blur(10px);
+        }
+        .chat-test { 
+            background: white; 
+            color: #333; 
+            padding: 20px; 
+            border-radius: 15px; 
+            margin: 20px 0; 
+        }
+        .test-input { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #d97706; 
+            border-radius: 25px; 
+            font-size: 16px; 
+            margin: 10px 0; 
+            outline: none;
+        }
+        .test-button { 
+            background: linear-gradient(135deg, #d97706, #f59e0b); 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 25px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: all 0.3s;
+        }
+        .test-button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(217, 119, 6, 0.3);
+        }
+        .response-area { 
+            margin-top: 20px; 
+            padding: 20px; 
+            background: #f8f9fa; 
+            border-radius: 10px; 
+            border-left: 5px solid #d97706; 
+            min-height: 100px;
+        }
+        .status { 
+            font-weight: bold; 
+            margin: 15px 0; 
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .success { 
+            background: #d4edda; 
+            color: #155724; 
+            border: 1px solid #c3e6cb;
+        }
+        .error { 
+            background: #f8d7da; 
+            color: #721c24; 
+            border: 1px solid #f5c6cb;
+        }
+        .debug { 
+            background: #e2e3e5; 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+            font-family: 'Courier New', monospace; 
+            font-size: 12px; 
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .timestamp {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 ULTRA FRESH VK Lucky Bistro Chatbot Test</h1>
+        
+        <div class="timestamp">
+            🕐 Created: 2025-08-13 22:51:43 UTC<br>
+            🔄 This bypasses ALL browser cache
+        </div>
+        
+        <div class="chat-test">
+            <h2>🤖 Live Chatbot API Test</h2>
+            
+            <div class="status" id="connectionStatus">🔄 Initializing fresh test...</div>
+            
+            <input type="text" id="testInput" class="test-input" placeholder="Ask about VK Lucky Bistro..." value="What are your most popular dishes?">
+            <br>
+            <button onclick="sendFreshMessage()" class="test-button" id="sendButton">
+                🚀 Test Fresh API Connection
+            </button>
+            
+            <div class="response-area">
+                <h3>🤖 AI Response:</h3>
+                <div id="responseArea">Ready to test your chatbot...</div>
+            </div>
+            
+            <div class="debug" id="debugArea">🔧 Debug Log:\n[Ready] Fresh chatbot test page loaded</div>
+        </div>
+    </div>
+
+    <script>
+        // FRESH CONFIG - Updated 2025-08-13 22:51:43
+        const FRESH_CONFIG = {
+            apiKey: 'cb_c78c139b58e9f364892b24c6a82e7f52540e52162dca171a768353044bfab62d',
+            apiUrl: 'https://mouna-ai-chatbot-production.up.railway.app/ask',
+            timestamp: '2025-08-13 22:51:43'
+        };
+        
+        const RESTAURANT_CONTEXT = `You are a helpful assistant for VK Lucky Bistro, an authentic Indian restaurant located in Hyderabad, India.
+
+Restaurant Information:
+- Name: VK Lucky Bistro
+- Location: 6-20, Midhani Quarters, Dhatu Nagar, Kanchan Bagh, Balapur, Hyderabad, Telangana 500097
+- Phone: +91 9000202102
+- Email: info@vkluckybistro.com
+- Hours: Monday-Sunday, 11:00 AM - 11:00 PM
+
+Popular Menu Items:
+Appetizers: Vegetable Samosa (₹80), Chicken 65 (₹220), Paneer Tikka (₹180)
+Main Courses: Hyderabadi Chicken Biryani (₹320), Mutton Biryani (₹420), Vegetable Biryani (₹280), Butter Chicken (₹260), Dal Tadka (₹150), Garlic Naan (₹80)
+Desserts: Gulab Jamun (₹120), Kulfi (₹100), Rasmalai (₹140)
+Beverages: Mango Lassi (₹90), Masala Chai (₹40), Chaas Buttermilk (₹60), Fresh Lime Water (₹50)
+
+Specialties: Authentic Hyderabadi Biryani, Traditional Indian spices, Fresh ingredients, Warm hospitality
+
+Please answer questions about the restaurant, menu, reservations, location, and dining experience. Be helpful and friendly.`;
+
+        function log(message, data = null) {
+            const debugArea = document.getElementById('debugArea');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}${data ? ': ' + JSON.stringify(data, null, 2) : ''}`;
+            debugArea.textContent += '\n' + logEntry;
+            debugArea.scrollTop = debugArea.scrollHeight;
+            console.log('🔧 DEBUG:', logEntry);
+        }
+
+        async function testFreshConnection() {
+            const statusEl = document.getElementById('connectionStatus');
+            try {
+                statusEl.innerHTML = '🔄 Testing FRESH API connection...';
+                statusEl.className = 'status';
+                
+                log('Testing connection with fresh config', FRESH_CONFIG);
+                
+                const response = await fetch(FRESH_CONFIG.apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': FRESH_CONFIG.apiKey
+                    },
+                    body: JSON.stringify({
+                        message: 'Connection test from fresh page',
+                        sessionId: 'fresh_test_' + Date.now(),
+                        language: 'en',
+                        userAgent: navigator.userAgent + ' FRESH-TEST',
+                        referrer: window.location.href
+                    })
+                });
+                
+                log('Response received', { status: response.status, ok: response.ok });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    statusEl.innerHTML = '✅ FRESH API CONNECTION SUCCESSFUL!';
+                    statusEl.className = 'status success';
+                    log('Connection test SUCCESS', data);
+                    return true;
+                } else {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+            } catch (error) {
+                statusEl.innerHTML = `❌ API connection failed: ${error.message}`;
+                statusEl.className = 'status error';
+                log('Connection test FAILED', error.message);
+                return false;
+            }
+        }
+
+        async function sendFreshMessage() {
+            const input = document.getElementById('testInput');
+            const responseArea = document.getElementById('responseArea');
+            const sendButton = document.getElementById('sendButton');
+            
+            const message = input.value.trim();
+            if (!message) {
+                log('Empty message provided');
+                return;
+            }
+            
+            sendButton.disabled = true;
+            sendButton.textContent = '🔄 Sending...';
+            responseArea.innerHTML = '🤖 VK Lucky Bistro AI is thinking...';
+            
+            log('Sending FRESH message', message);
+            
+            try {
+                const requestData = {
+                    message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
+                    sessionId: 'vk_fresh_' + Date.now(),
+                    language: 'en',
+                    userAgent: navigator.userAgent + ' FRESH-TEST',
+                    referrer: window.location.href
+                };
+                
+                log('Fresh request data prepared', { messageLength: requestData.message.length, sessionId: requestData.sessionId });
+                
+                const response = await fetch(FRESH_CONFIG.apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': FRESH_CONFIG.apiKey
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                log('Fresh API response', { status: response.status, ok: response.ok });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+                
+                const data = await response.json();
+                log('Fresh API SUCCESS', { responseLength: data.response?.length || 0 });
+                
+                responseArea.innerHTML = `<div style="background: #d4edda; padding: 15px; border-radius: 10px; border-left: 5px solid #28a745;">
+                    <strong>🎉 SUCCESS! Your VK Lucky Bistro AI Assistant says:</strong><br><br>
+                    ${data.response || data.message || 'No response received'}
+                </div>`;
+                
+            } catch (error) {
+                log('Fresh API ERROR', error.message);
+                responseArea.innerHTML = `<div style="background: #f8d7da; padding: 15px; border-radius: 10px; border-left: 5px solid #dc3545;">
+                    <strong>❌ Error:</strong><br><br>${error.message}
+                </div>`;
+            } finally {
+                sendButton.disabled = false;
+                sendButton.textContent = '🚀 Test Fresh API Connection';
+            }
+        }
+        
+        // Auto-test connection on load
+        window.addEventListener('load', async () => {
+            log('Fresh page loaded', FRESH_CONFIG);
+            await testFreshConnection();
+        });
+        
+        // Allow Enter key to send message
+        document.getElementById('testInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendFreshMessage();
+            }
+        });
+        
+        console.log('🔥 FRESH VK Lucky Bistro Chatbot Test Loaded!', FRESH_CONFIG);
+    </script>
+</body>
+</html>
