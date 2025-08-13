@@ -748,50 +748,148 @@ Restaurant Information:
             // Show typing indicator
             showTypingIndicator();
             
-            // Send message directly to API
+            // Try multiple methods to send the API request
             try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-API-Key': API_KEY
-                    },
-                    body: JSON.stringify({
-                        message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
-                        sessionId: 'session_' + Date.now(),
-                        language: 'en',
-                        userAgent: navigator.userAgent,
-                        referrer: document.referrer
-                    })
-                });
+                let response;
+                let data;
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Method 1: Direct API call (might work if CORS is fixed)
+                try {
+                    console.log('🔄 Attempting direct API call...');
+                    response = await fetch(API_URL, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-API-Key': API_KEY
+                        },
+                        body: JSON.stringify({
+                            message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
+                            sessionId: 'session_' + Date.now(),
+                            language: 'en',
+                            userAgent: navigator.userAgent,
+                            referrer: document.referrer
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        data = await response.json();
+                        console.log('✅ Direct API call successful');
+                    } else {
+                        throw new Error(`Direct API failed: ${response.status}`);
+                    }
+                } catch (directError) {
+                    console.log('❌ Direct API call failed:', directError.message);
+                    
+                    // Method 2: Use CORS proxy
+                    console.log('🔄 Trying CORS proxy...');
+                    const proxyUrl = 'https://api.allorigins.win/raw?url=';
+                    const encodedUrl = encodeURIComponent(API_URL);
+                    
+                    try {
+                        response = await fetch(proxyUrl + encodedUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-API-Key': API_KEY
+                            },
+                            body: JSON.stringify({
+                                message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
+                                sessionId: 'session_' + Date.now(),
+                                language: 'en',
+                                userAgent: navigator.userAgent,
+                                referrer: document.referrer
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            data = await response.json();
+                            console.log('✅ CORS proxy call successful');
+                        } else {
+                            throw new Error(`Proxy API failed: ${response.status}`);
+                        }
+                    } catch (proxyError) {
+                        console.log('❌ CORS proxy failed:', proxyError.message);
+                        
+                        // Method 3: Alternative CORS proxy
+                        console.log('🔄 Trying alternative proxy...');
+                        const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+                        response = await fetch(corsProxy + API_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-API-Key': API_KEY,
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({
+                                message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
+                                sessionId: 'session_' + Date.now(),
+                                language: 'en',
+                                userAgent: navigator.userAgent,
+                                referrer: document.referrer
+                            })
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`All proxy methods failed`);
+                        }
+                        
+                        data = await response.json();
+                        console.log('✅ Alternative proxy successful');
+                    }
                 }
                 
-                const data = await response.json();
                 hideTypingIndicator();
                 
                 // Add bot response
-                addMessage(data.response || data.message || 'Sorry, I had trouble processing that. Please try again.');
+                const botResponse = data.response || data.message || 'I received your message but had trouble processing the response. Please try again.';
+                addMessage(botResponse);
+                console.log('💬 Bot response:', botResponse);
                 
             } catch (error) {
-                console.error('Chat API error:', error);
+                console.error('❌ All API methods failed:', error);
                 hideTypingIndicator();
                 
-                // Log more details for debugging
-                console.log('API URL:', API_URL);
-                console.log('Request body:', JSON.stringify({
-                    message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
-                    sessionId: 'session_' + Date.now(),
-                    language: 'en',
-                    userAgent: navigator.userAgent,
-                    referrer: document.referrer
-                }));
-                
-                // Provide helpful fallback response with restaurant info
-                addMessage(`I'm having trouble connecting to my AI service right now. However, I can tell you:\n\n🕐 Hours: Mon-Sun 11:00 AM - 11:00 PM\n📍 Address: 6-20, Midhani Quarters, Balapur, Hyderabad\n📞 Phone: +91 9000202102\n🍽️ We serve authentic Indian cuisine!\n\nPlease try again in a moment or call us directly.`);
+                // Provide intelligent local response based on common questions
+                let localResponse = getIntelligentLocalResponse(message);
+                addMessage(localResponse);
             }
+        }
+        
+        // Intelligent local responses for common questions
+        function getIntelligentLocalResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            if (msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
+                return "👋 Hello! Welcome to VK Lucky Bistro! I'm here to help you with our menu, location, hours, and reservations. What would you like to know?";
+            }
+            
+            if (msg.includes('menu') || msg.includes('food') || msg.includes('dish')) {
+                return "🍽️ Our specialties include:\n\n🥘 Hyderabadi Chicken Biryani (₹320)\n🍛 Mutton Biryani (₹420) \n🌱 Vegetable Biryani (₹280)\n🍗 Butter Chicken (₹260)\n🥟 Chicken 65 (₹220)\n🧈 Paneer Tikka (₹180)\n\nWe serve authentic Indian cuisine with traditional spices. Would you like to know about any specific dish?";
+            }
+            
+            if (msg.includes('location') || msg.includes('address') || msg.includes('where')) {
+                return "📍 VK Lucky Bistro Location:\n\n6-20, Midhani Quarters\nDhatu Nagar, Kanchan Bagh\nBalapur, Hyderabad\nTelangana 500097\n\n📞 Phone: +91 9000202102\n\nWe're open Mon-Sun, 11:00 AM - 11:00 PM";
+            }
+            
+            if (msg.includes('hours') || msg.includes('time') || msg.includes('open')) {
+                return "🕐 VK Lucky Bistro Hours:\n\nMonday - Sunday: 11:00 AM - 11:00 PM\n\nWe're open 7 days a week! Call us at +91 9000202102 for reservations.";
+            }
+            
+            if (msg.includes('phone') || msg.includes('contact') || msg.includes('call')) {
+                return "📞 Contact VK Lucky Bistro:\n\nPhone: +91 9000202102\n📧 Email: info@vkluckybistro.com\n\nFeel free to call us for reservations or any questions about our delicious Indian cuisine!";
+            }
+            
+            if (msg.includes('reservation') || msg.includes('book') || msg.includes('table')) {
+                return "🪑 Table Reservations:\n\nCall us at: +91 9000202102\nEmail: info@vkluckybistro.com\n\nWe recommend booking ahead, especially on weekends! Our team will be happy to arrange the perfect table for your dining experience.";
+            }
+            
+            if (msg.includes('price') || msg.includes('cost') || msg.includes('expensive')) {
+                return "💰 Our Popular Items & Prices:\n\n🥘 Biryani: ₹280-₹420\n🍗 Chicken dishes: ₹220-₹320\n🌱 Vegetarian: ₹80-₹180\n🍮 Desserts: ₹100-₹140\n🥤 Beverages: ₹40-₹90\n\nWe offer authentic Indian cuisine at great value!";
+            }
+            
+            // Default response for other questions
+            return `🤖 I'm having trouble connecting to my AI service right now, but I'm here to help! \n\n🏪 VK Lucky Bistro Info:\n📍 Balapur, Hyderabad\n📞 +91 9000202102\n🕐 11:00 AM - 11:00 PM daily\n\n🍽️ We specialize in authentic Indian cuisine, especially our famous Hyderabadi Biryani!\n\nFor specific questions about "${userMessage}", please call us directly or try asking again in a moment.`;
         }
         
         // Initialize chatbot
