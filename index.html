@@ -678,7 +678,7 @@
     
     <!-- Inline Chatbot JavaScript -->
     <script>
-        const API_KEY = 'cb_c78c139b58e9f364892b24c6a82e7f52540e52162dca171a768353044bfab62d';
+        const API_KEY = 'test_12345_abcdef_widget_key';
         const API_URL = 'https://mouna-ai-chatbot-production.up.railway.app/ask';
         
         // Restaurant context for AI
@@ -757,8 +757,7 @@ Restaurant Information:
                         'X-API-Key': API_KEY
                     },
                     body: JSON.stringify({
-                        message: message,
-                        context: RESTAURANT_CONTEXT,
+                        message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
                         sessionId: 'session_' + Date.now(),
                         language: 'en',
                         userAgent: navigator.userAgent,
@@ -783,10 +782,11 @@ Restaurant Information:
                 // Log more details for debugging
                 console.log('API URL:', API_URL);
                 console.log('Request body:', JSON.stringify({
-                    message: message,
-                    context: RESTAURANT_CONTEXT,
+                    message: RESTAURANT_CONTEXT + '\n\nUser question: ' + message,
                     sessionId: 'session_' + Date.now(),
-                    language: 'en'
+                    language: 'en',
+                    userAgent: navigator.userAgent,
+                    referrer: document.referrer
                 }));
                 
                 // Provide helpful fallback response with restaurant info
