@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VK Lucky Bistro - Chatbot Test</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #d97706, #ea580c);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .chat-container {
+            background: white;
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #fafafa;
+            text-align: left;
+        }
+        
+        .message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .user-message {
+            background: #d97706;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .bot-message {
+            background: #e5e5e5;
+            color: #333;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .chat-input:focus {
+            border-color: #d97706;
+        }
+        
+        .send-button {
+            background: #d97706;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .send-button:hover {
+            background: #b45309;
+        }
+        
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .test-buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .test-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .test-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🍽️ VK Lucky Bistro</h1>
+        <p class="subtitle">AI Chatbot Test - Now with WORKING API Connection!</p>
+        
+        <div class="test-buttons">
+            <button class="test-button" onclick="testMessage('What\'s on your menu?')">Test Menu Question</button>
+            <button class="test-button" onclick="testMessage('Where are you located?')">Test Location</button>
+            <button class="test-button" onclick="testMessage('What are your hours?')">Test Hours</button>
+            <button class="test-button" onclick="testMessage('Do you serve biryani?')">Test Food Query</button>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    🍽️ Welcome to VK Lucky Bistro! I'm here to help you with our menu, reservations, location, and any questions about our delicious Indian cuisine. How can I assist you today?
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Ask about our menu, location, hours..." onkeypress="handleEnterKey(event)">
+                <button class="send-button" onclick="sendMessage()">Send</button>
+            </div>
+            
+            <div id="status" class="status" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        function handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function testMessage(message) {
+            document.getElementById('chatInput').value = message;
+            sendMessage();
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Show loading
+            const loadingDiv = addMessage('🤖 Thinking...', 'bot');
+            loadingDiv.id = 'loading-message';
+            
+            try {
+                const response = await fetch('https://mouna-ai-chatbot-production.up.railway.app/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': 'cb_c78c139b58e9f364892b24c6a82e7f52540e52162dca171a768353044bfab62d'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        sessionId: 'vk-bistro-test-' + Date.now(),
+                        website: 'VK Lucky Bistro',
+                        language: 'en'
+                    })
+                });
+                
+                // Remove loading message
+                const loadingEl = document.getElementById('loading-message');
+                if (loadingEl) loadingEl.remove();
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                // Add bot response
+                addMessage(data.response, 'bot');
+                showStatus('✅ Message sent successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                
+                // Remove loading message
+                const loadingEl = document.getElementById('loading-message');
+                if (loadingEl) loadingEl.remove();
+                
+                // Add error message
+                addMessage(`❌ Sorry, I'm having trouble connecting: ${error.message}`, 'bot');
+                showStatus(`❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+        
+        function addMessage(message, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = message;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            return messageDiv;
+        }
+        
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+            statusEl.style.display = 'block';
+            
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Test API connection on page load
+        window.addEventListener('load', () => {
+            console.log('🚀 VK Lucky Bistro Chatbot Test Page Loaded');
+            console.log('🔑 API Key configured');
+            console.log('🌐 Ready to test chatbot functionality');
+        });
+    </script>
+</body>
+</html>
