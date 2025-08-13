@@ -681,6 +681,26 @@
         const API_KEY = 'cb_c78c139b58e9f364892b24c6a82e7f52540e52162dca171a768353044bfab62d';
         const API_URL = 'https://mouna-ai-chatbot-production.up.railway.app/ask';
         
+        // Restaurant context for AI
+        const RESTAURANT_CONTEXT = `You are a helpful assistant for VK Lucky Bistro, an authentic Indian restaurant located in Hyderabad, India. 
+        
+Restaurant Information:
+        - Name: VK Lucky Bistro
+        - Location: 6-20, Midhani Quarters, Dhatu Nagar, Kanchan Bagh, Balapur, Hyderabad, Telangana 500097
+        - Phone: +91 9000202102
+        - Email: info@vkluckybistro.com
+        - Hours: Monday-Sunday, 11:00 AM - 11:00 PM
+        
+        Popular Menu Items:
+        Appetizers: Vegetable Samosa (₹80), Chicken 65 (₹220), Paneer Tikka (₹180)
+        Main Courses: Hyderabadi Chicken Biryani (₹320), Mutton Biryani (₹420), Vegetable Biryani (₹280), Butter Chicken (₹260), Dal Tadka (₹150), Garlic Naan (₹80)
+        Desserts: Gulab Jamun (₹120), Kulfi (₹100), Rasmalai (₹140)
+        Beverages: Mango Lassi (₹90), Masala Chai (₹40), Chaas Buttermilk (₹60), Fresh Lime Water (₹50)
+        
+        Specialties: Authentic Hyderabadi Biryani, Traditional Indian spices, Fresh ingredients, Warm hospitality
+        
+        Please answer questions about the restaurant, menu, reservations, location, and dining experience. Be helpful and friendly.`;
+        
         
         function toggleChatbot() {
             const popup = document.getElementById('chatbotPopup');
@@ -738,6 +758,7 @@
                     },
                     body: JSON.stringify({
                         message: message,
+                        context: RESTAURANT_CONTEXT,
                         sessionId: 'session_' + Date.now(),
                         language: 'en',
                         userAgent: navigator.userAgent,
@@ -759,8 +780,17 @@
                 console.error('Chat API error:', error);
                 hideTypingIndicator();
                 
-                // Provide helpful fallback response
-                addMessage('I apologize, but I\'m having trouble connecting to my AI service right now. Please try again in a moment, or contact us directly at +91 9000202102.');
+                // Log more details for debugging
+                console.log('API URL:', API_URL);
+                console.log('Request body:', JSON.stringify({
+                    message: message,
+                    context: RESTAURANT_CONTEXT,
+                    sessionId: 'session_' + Date.now(),
+                    language: 'en'
+                }));
+                
+                // Provide helpful fallback response with restaurant info
+                addMessage(`I'm having trouble connecting to my AI service right now. However, I can tell you:\n\n🕐 Hours: Mon-Sun 11:00 AM - 11:00 PM\n📍 Address: 6-20, Midhani Quarters, Balapur, Hyderabad\n📞 Phone: +91 9000202102\n🍽️ We serve authentic Indian cuisine!\n\nPlease try again in a moment or call us directly.`);
             }
         }
         
